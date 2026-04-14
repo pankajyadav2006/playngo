@@ -1,0 +1,150 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  PROVIDER
+  ADMIN
+}
+
+model User {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  email           String    @unique
+  password        String
+  phone           String?
+  avatar          String?
+  role            UserRole  @default(USER)
+  totalBookings   Int       @default(0)
+  rewardPoints    Int       @default(0)
+  isEmailVerified Boolean   @default(false)
+  lastLogin       DateTime?
+  joinedDate      DateTime  @default(now())
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  bookings         Booking[]
+  reviews          Review[]
+  ownedVenues      Venue[]   @relation("VenueOwner")
+  favoriteVenues   Venue[]   @relation("UserFavorites", fields: [favoriteVenueIds], references: [id])
+  favoriteVenueIds String[]  @db.ObjectId
+
+  @@map("users")
+}
+
+model Venue {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  location      String
+  shortLocation String
+  sport         String
+  type          String
+  price         Int
+  priceUnit     String
+  rating        Float    @default(0)
+  reviewCount   Int      @default(0)
+  image         String
+  images        String[]
+  about         String
+  openHours     String   @default("6:00 AM - 11:00 PM")
+  contactPhone  String?
+
+  ownerId String @db.ObjectId
+  owner   User   @relation("VenueOwner", fields: [ownerId], references: [id])
+
+  facilities Facility[]
+
+  availableSlots Json @default("{}")
+
+  isActive       Boolean   @default(true)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  bookings       Booking[]
+  reviews        Review[]
+  favoritedBy    User[]    @relation("UserFavorites", fields: [favoritedByIds], references: [id])
+  favoritedByIds String[]  @db.ObjectId
+
+  @@index([sport, rating])
+  @@index([shortLocation])
+  @@map("venues")
+}
+
+type Facility {
+  name String
+  icon String
+}
+
+model Booking {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  venueId String @db.ObjectId
+  venue   Venue  @relation(fields: [venueId], references: [id], onDelete: Cascade)
+
+  venueName  String
+  venueImage String
+
+  date     DateTime
+  time     String
+  duration String
+  price    Int
+
+  status      BookingStatus @default(CONFIRMED)
+  bookingDate DateTime      @default(now())
+  cancelledAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([userId, status])
+  @@index([venueId, date])
+  @@index([date])
+  @@map("bookings")
+}
+
+enum BookingStatus {
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+model SportCategory {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String   @unique
+  icon      String
+  trending  Boolean  @default(false)
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([order])
+  @@map("sport_categories")
+}
+
+model Review {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  venueId String @db.ObjectId
+  venue   Venue  @relation(fields: [venueId], references: [id], onDelete: Cascade)
+
+  rating  Float
+  comment String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([venueId, createdAt])
+  @@index([userId])
+  @@map("reviews")
+}
