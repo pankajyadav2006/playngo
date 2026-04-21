@@ -304,8 +304,8 @@ export default function ProfileScreen() {
                 </Animated.View>
 
                 {/* App Version */}
-                <Text style={styles.version}>PlayNxt v1.0.0</Text>
-                <Text style={styles.copyright}>© 2025 PlayNxt. All rights reserved.</Text>
+                <Text style={styles.version}>PlaynGO v1.0.0</Text>
+                <Text style={styles.copyright}>© 2025 PlaynGO. All rights reserved.</Text>
             </ScrollView>
         </View>
     );

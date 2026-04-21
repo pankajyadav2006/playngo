@@ -1,8 +1,8 @@
 <div align="center">
 
-# 🤝 Contributing to PlayNxt
+# 🤝 Contributing to PlaynGO
 
-### Thank you for helping make PlayNxt better!
+### Thank you for helping make PlaynGO better!
 
 We welcome all contributions — from bug fixes to new features. 
 This guide will help you get started.
@@ -41,7 +41,7 @@ We're committed to providing a welcoming and inclusive environment. Please:
 ```bash
 # Fork the repo on GitHub, then:
 git clone https://github.com/YOUR_USERNAME/playnxt.git
-cd playnxt/PlayNxt
+cd playnxt/PlaynGO
 ```
 
 ### 2️⃣ Set Up Development Environment
@@ -249,8 +249,8 @@ const styles = StyleSheet.create({
 
 ## 💬 Need Help?
 
-- 📖 Check existing [issues](https://github.com/CodyBrat/PlayNxt/issues)
-- 💬 Start a [discussion](https://github.com/CodyBrat/PlayNxt/discussions)
+- 📖 Check existing [issues](https://github.com/CodyBrat/PlaynGO/issues)
+- 💬 Start a [discussion](https://github.com/CodyBrat/PlaynGO/discussions)
 - 📧 Email: priyabrata@playnxt.com
 
 ---
@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
 ### 🌟 Every contribution counts!
 
 Whether it's fixing a typo or adding a major feature, 
-your contribution helps make PlayNxt better for everyone.
+your contribution helps make PlaynGO better for everyone.
 
 **Happy Coding! 🚀**
 

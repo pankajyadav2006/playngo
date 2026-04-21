@@ -103,7 +103,7 @@ export default function LoginScreen({ navigation }) {
                                 color={theme.colors.secondary}
                             />
                         </View>
-                        <Text style={styles.logo}>PlayNxt</Text>
+                        <Text style={styles.logo}>PlaynGO</Text>
                         <Text style={styles.tagline}>Find Your Perfect Turf</Text>
                     </Animated.View>
                 </SafeAreaView>

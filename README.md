@@ -1,6 +1,6 @@
 <div align="center">
   
-# PlayNxt
+# PlaynGO
 
 ### *Find. Book. Play.*
 
@@ -29,9 +29,9 @@ https://drive.google.com/file/d/1GcO2O99T20hHCncjNsEBIO5FcDs0t74F/view?usp=shari
 
 ---
 
-## What is PlayNxt?
+## What is PlaynGO?
 
-**PlayNxt** is a sleek, modern sports venue booking app that bridges the gap between **sports enthusiasts** and **venue owners**. Whether you're looking to book a football turf for a weekend match or manage your sports facility, PlayNxt makes it seamless.
+**PlaynGO** is a sleek, modern sports venue booking app that bridges the gap between **sports enthusiasts** and **venue owners**. Whether you're looking to book a football turf for a weekend match or manage your sports facility, PlaynGO makes it seamless.
 
 <div align="center">
 
@@ -116,7 +116,7 @@ Expo CLI
 ```bash
 # Clone the repo
 git clone https://github.com/yourusername/playnxt.git
-cd playnxt/PlayNxt
+cd playnxt/PlaynGO
 
 # Install frontend dependencies
 npm install
@@ -145,7 +145,7 @@ PORT=3000
 cd backend && npm run dev
 
 # Terminal 2: Start Frontend
-cd PlayNxt && npm start
+cd PlaynGO && npm start
 ```
 
 <div align="center">
@@ -205,7 +205,7 @@ PUT  /api/bookings/:id/cancel   # Cancel booking
 ## Project Structure
 
 ```
-PlayNxt/
+PlaynGO/
 ├── src/
 │   ├── components/     # Reusable UI components
 │   ├── context/        # State management (React Context)

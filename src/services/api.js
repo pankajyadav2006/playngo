@@ -4,8 +4,15 @@ import Constants from 'expo-constants';
 import { getToken } from '../utils/storage';
 
 const getApiUrl = () => {
-    const API_URL = 'https://playnxt.onrender.com/api';
-    console.log('Using Hosted API URL:', API_URL);
+    // For physical devices, we need the local IP address of the machine
+    const hostUri = Constants.expoConfig?.hostUri || Constants.manifest2?.extra?.expoGoConfig?.debuggerHost;
+    const localhost = hostUri ? hostUri.split(':').shift() : '10.254.201.142'; // Your computer's current IP
+
+    const API_URL = `http://${localhost}:3000/api`;
+    
+    console.log('🌐 Connection Strategy:', hostUri ? 'Auto-detected IP' : 'Manual Fallback IP');
+    console.log('🔗 API Base URL:', API_URL);
+    
     return API_URL;
 };
 
